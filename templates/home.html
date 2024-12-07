@@ -1,0 +1,25 @@
+<html>
+<body>
+    <script src="https://js.puter.com/v2/"></script>
+    <script>
+        // Function to get query parameter by name
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Get 'message' parameter from URL
+        const message = getQueryParam('message');
+
+        // Use puter.ai.chat to get and display the response
+        if (message) {
+            puter.ai.chat(message).then(response => {
+                const formattedResponse = `<pre>${response}</pre>`;
+                document.body.innerHTML = JSON.stringify({"response": formattedResponse });
+            });
+        } else {
+            document.body.innerHTML = JSON.stringify({ response: 'No message found.' });
+        }
+    </script>
+</body>
+</html>
